@@ -1,0 +1,35 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #cdd6f4;
+  background-color: #121217;
+  /*mellstroy pidors */
+}
+
+.send-button {
+  background-color: #121212; /* Green */
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 2px solid #09735a;
+  transition: 0.3s ease;
+}
+
+.send-button:hover {
+    background-color: #09735a;
+    color: #121212;
+}
+.top-header {
+  background-color: #121212;
+  padding: 20px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  border-bottom: 2px solid #09735a;
+}
