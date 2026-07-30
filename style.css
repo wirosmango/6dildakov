@@ -1,8 +1,17 @@
+  :root {
+    --bg: #121217;
+    --surface: #121217;
+    --border: #262a33;
+    --text: #cdd6f4;
+    --muted: #8b909c;
+    --accent: #09735a;
+  }
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #cdd6f4;
   background-color: #121217;
-  /*mellstroy pidors */
+  padding-bottom: 76px;
 }
 
 .send-button {
@@ -25,11 +34,97 @@ body {
     background-color: #09735a;
     color: #121212;
 }
-.top-header {
-  background-color: #121212;
-  padding: 20px;
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-  border-bottom: 2px solid #09735a;
+
+.bottom-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 8px 4px;
+  padding-bottom: calc(8px + env(safe-area-inset-bottom)); /* учёт "чёлки"/жестовой полосы iOS */
+  z-index: 100;
 }
+ 
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 11px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: color 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+}
+ 
+.nav-item svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+}
+ 
+.nav-item.active {
+  color: var(--accent);
+}
+ 
+  /* Показываем панель только на узких экранах (телефоны) */
+@media (max-width: 719px) {
+  .bottom-nav { display: flex; }
+  body { padding-bottom: 0; }
+  .side-nav { display: none; }
+}
+@media (min-width: 720px) {
+  .side-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 220px;
+    padding: 24px 12px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+  }
+
+  .side-nav .nav-item {
+    flex-direction: row; /* иконка и текст в ряд, а не в столбик */
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  .side-nav .nav-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .side-nav .nav-item.active {
+    background: rgba(9, 115, 90, 0.12);
+  }
+
+  /* Скрываем нижнюю панель на десктопе */
+  .bottom-nav {
+    display: none;
+  }
+
+  /* Сдвигаем контент вправо, чтобы не залезал под сайдбар */
+  .content {
+    margin-left: 220px;
+    padding-bottom: 24px; /* панели снизу больше нет, отступ не нужен */
+  }
+}
+
